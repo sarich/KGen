@@ -6,9 +6,10 @@ KGEN := ${KGEN_HOME}/bin/kgen
 SRC_DIR := ${PWD}/src
 SRC := ${SRC_DIR}/update_mod.F90
 CALLSITE := update_mod:update:calc
+GFORTRAN_FLAGS=--kernel-option FC_FLAGS="-ffree-line-length-none -cpp"
 
 test:
-	${KGEN} \
+	${KGEN} ${GFORTRAN_FLAGS} \
 		--cmd-clean "cd ${SRC_DIR}; make clean" \
 		--cmd-build "cd ${SRC_DIR}; make build" \
 		--cmd-run "cd ${SRC_DIR}; make run" \

@@ -5,9 +5,9 @@ KGEN := ${KGEN_HOME}/bin/kgen
 
 SRC_DIR := ${PWD}/src
 SRC := ${SRC_DIR}/update_mod.F90
-
+GFORTRAN_FLAGS=--kernel-option FC_FLAGS="-ffree-line-length-none -cpp"
 test:
-	${KGEN} \
+	${KGEN} ${GFORTRAN_FLAGS} \
 		--mpi enable \
 		--cmd-clean "cd ${SRC_DIR}; make -f Makefile.mpirun clean" \
 		--cmd-build "cd ${SRC_DIR}; make -f Makefile.mpirun build" \
